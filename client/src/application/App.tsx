@@ -1,6 +1,5 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '.';
+import { RootState } from 'main';
 import { someFunc } from './store';
 
 function App() {

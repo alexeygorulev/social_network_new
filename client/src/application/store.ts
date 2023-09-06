@@ -9,11 +9,9 @@ export const someReducer = createSlice({
   reducers: {
     someFunc: (state, actions) => {
       state.kek = actions.payload;
-      console.log(actions.payload);
     },
     someReturn: {
       reducer(state, action: PayloadAction<{ id: string }>) {
-        console.log(state.kek);
         console.log(action.payload.id);
       },
       prepare(kek: string) {
