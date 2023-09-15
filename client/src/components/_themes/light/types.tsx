@@ -1,6 +1,7 @@
 import { colors, gradients } from './_colors';
 import { fontStyles, fontWeights, fonts } from './_fonts';
 import { display, sizes, textAligns } from './_typography';
+import { styles as input } from './input';
 
 export type Size = keyof typeof sizes;
 
@@ -19,3 +20,5 @@ export type FontStyle = keyof typeof fontStyles;
 export type Display = keyof typeof display;
 
 export type ColorsType = typeof colors;
+
+export type InputType = typeof input;

@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import { StyledInputElementProps, StyledInputLabelProps, StyledInputProps } from './types';
 import { media, mediaSizes } from 'components/_themes/constants';
 
-import theme from './constants';
-
 function getInputWidth(props: StyledInputProps) {
   if (typeof props.sWidth === 'number') return `${props.sWidth}px`;
   return props.sWidth || '100%';
@@ -28,6 +26,7 @@ export const StyledInput = styled.div<StyledInputProps>`
 `;
 
 function getInputLabelColor(props: StyledInputLabelProps) {
+  const { theme } = props;
   if (props.sDisabled) return theme.label.colors.disabled;
   if (props.sError) return theme.label.colors.error;
   if (props.sFocused) return theme.label.colors.focused;
@@ -35,29 +34,35 @@ function getInputLabelColor(props: StyledInputLabelProps) {
 }
 
 function getInputLabelTop(props: StyledInputLabelProps, mediaSize: string) {
+  const { theme } = props;
   if (props.sSmall) return `${theme.label.position[mediaSize][props.sSize].top}px`;
   return '50%';
 }
 
 function getInputLabelFontWeight(props: StyledInputLabelProps) {
+  const { theme } = props;
   if (props.sSmall) return theme.label.fontWeight.small;
   return theme.label.fontWeight.normal;
 }
 
 function getInputLabelLeft(props: StyledInputLabelProps, mediaSize: string) {
+  const { theme } = props;
   return `${theme.label.position[mediaSize][props.sSize].left}px`;
 }
 
 function getInputLabelRight(props: StyledInputLabelProps, mediaSize: string) {
+  const { theme } = props;
   return `${theme.label.position[mediaSize][props.sSize].right}px`;
 }
 
 function getInputLabelFontSize(props: StyledInputLabelProps, mediaSize: string) {
+  const { theme } = props;
   if (props.sSmall) return `${theme.label.fontSize.small[mediaSize][props.sSize]}px`;
   return `${theme.label.fontSize.normal[mediaSize][props.sSize]}px`;
 }
 
 function getInputLabelLineHeight(props: StyledInputLabelProps, mediaSize: string) {
+  const { theme } = props;
   if (props.sSmall) return `${theme.label.lineHeight.small[mediaSize][props.sSize]}px`;
   return `${theme.label.lineHeight.normal[mediaSize][props.sSize]}px`;
 }
@@ -75,7 +80,7 @@ export const StyledInputLabel = styled.label<StyledInputLabelProps>`
     top 0.12s ease-out,
     font-weight 0.12s ease-out;
   pointer-events: none;
-  font-family: ${theme.label.fontFamily};
+  font-family: ${({ theme }) => theme.label.fontFamily};
   color: ${(props) => getInputLabelColor(props)};
   font-weight: ${(props) => getInputLabelFontWeight(props)};
   top: ${(props) => getInputLabelTop(props, mediaSizes.s)};
@@ -102,14 +107,17 @@ export const StyledInputLabel = styled.label<StyledInputLabelProps>`
 `;
 
 function getInputElementFontWeight(props: StyledInputElementProps) {
+  const { theme } = props;
   return theme.element.fontWeight[props.sSize];
 }
 
 function getInputElementFontSize(props: StyledInputElementProps, mediaSize: string) {
+  const { theme } = props;
   return `${theme.element.fontSize[mediaSize][props.sSize]}px`;
 }
 
 function getInputElementColor(props: StyledInputElementProps) {
+  const { theme } = props;
   if (props.sDisabled) return theme.element.colors.disabled;
   if (props.sError) return theme.element.colors.error;
   if (props.sFocused) return theme.element.colors.focused;
@@ -117,6 +125,7 @@ function getInputElementColor(props: StyledInputElementProps) {
 }
 
 function getInputElementBackgroundColor(props: StyledInputElementProps) {
+  const { theme } = props;
   if (props.sDisabled) return theme.element.backgroundColors.disabled;
   if (props.sError) return theme.element.backgroundColors.error;
   if (props.sFocused) return theme.element.backgroundColors.focused;
@@ -124,6 +133,7 @@ function getInputElementBackgroundColor(props: StyledInputElementProps) {
 }
 
 function getInputElementBorderColor(props: StyledInputElementProps) {
+  const { theme } = props;
   if (props.sDisabled) return theme.element.borderColors.disabled;
   if (props.sError) return theme.element.borderColors.error;
   if (props.sFocused) return theme.element.borderColors.focused;
@@ -131,14 +141,17 @@ function getInputElementBorderColor(props: StyledInputElementProps) {
 }
 
 function getInputElementHeight(props: StyledInputLabelProps, mediaSize: string) {
+  const { theme } = props;
   return `${theme.element.height[mediaSize][props.sSize]}px`;
 }
 
 function getInputElementLineHeight(props: StyledInputLabelProps, mediaSize: string) {
+  const { theme } = props;
   return `${theme.element.lineHeight[mediaSize][props.sSize]}px`;
 }
 
 function getInputElementPadding(props: StyledInputElementProps, mediaSize: string) {
+  const { theme } = props;
   const vPadding = props.sWithLabel
     ? theme.element.padding[mediaSize].vertical.withLabel[props.sSize]
     : theme.element.padding[mediaSize].vertical.normal[props.sSize];
@@ -156,13 +169,13 @@ export const StyledInputElement = styled.div<StyledInputElementProps>`
   opacity: 1;
   width: 100%;
   max-width: 100%;
-  border-radius: ${theme.element.borderRadius}px;
+  border-radius: ${({ theme }) => theme.element.borderRadius}px;
   font-weight: ${(props) => getInputElementFontWeight(props)};
   transition:
     border-color 0.32s ease-out,
     background-color 0.32s ease-out,
     color 0.32s ease-out;
-  font-family: ${theme.element.fontFamily};
+  font-family: ${({ theme }) => theme.element.fontFamily};
   text-align: ${(props) => (props.sTextAlign ? props.sTextAlign : 'left')};
   color: ${(props) => getInputElementColor(props)};
   background: ${(props) => getInputElementBackgroundColor(props)};

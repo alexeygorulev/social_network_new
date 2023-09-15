@@ -11,6 +11,7 @@ import {
 import { useTheme } from 'styled-components';
 import Grid, { Item } from 'components/atoms/Grid';
 import { labels } from './constants';
+import InputText from 'components/inputs/InputText';
 
 export default function ApplicationAuth(props: ComponentProps) {
   const { store, actions } = props;
@@ -45,8 +46,12 @@ export default function ApplicationAuth(props: ComponentProps) {
               {labels.logIn}
             </Block>
             <StyledAuthFormContainer>
-              <Block textAlign="center">1</Block>
-              <Block>2</Block>
+              <Block textAlign="center">
+                <InputText label="Логин" />
+              </Block>
+              <Block margin="m">
+                <InputText label="Введите пароль" />
+              </Block>
             </StyledAuthFormContainer>
           </Item>
         </Grid>

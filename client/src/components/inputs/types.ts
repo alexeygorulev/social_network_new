@@ -1,4 +1,4 @@
-import { TextAlign } from 'components/types';
+import { InputType, TextAlign } from 'components/_themes/light/types';
 
 export type Size = 's' | 'm' | 'l';
 
@@ -30,6 +30,7 @@ export type StyledInputProps = Readonly<{
 }>;
 
 export type StyledInputLabelProps = Readonly<{
+  theme?: InputType;
   sSize?: Size;
   sSmall?: boolean;
   sError?: boolean;
@@ -51,6 +52,7 @@ export type StyledInputIconProps = Readonly<{
 }>;
 
 export type StyledInputElementProps = Readonly<{
+  theme?: InputType;
   sSize?: Size;
   sTextAlign?: TextAlign;
   sDisabled?: boolean;

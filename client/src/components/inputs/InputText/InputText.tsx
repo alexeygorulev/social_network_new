@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 
-import IconActionClear from 'components/icons/IconActionClear';
-import IconStatusSuccess from 'components/icons/IconStatusSuccess';
-import { StyledInput, StyledInputLabel, StyledInputIcon } from 'components/inputs/style';
+import { StyledInput, StyledInputLabel } from 'components/inputs/style';
 import { getCaretPosition } from 'components/inputs/utils';
 
 import { InputTextProps } from './types';
 import { formatTextValue, deformatTextValue } from './utils';
-import { StyledInputText, StyledInputTextAutosize } from './style';
+import { StyledInputText } from './style';
+import { useTheme } from 'styled-components';
 
 const InputText: React.FC<InputTextProps> = (props) => {
   const {
@@ -37,21 +36,19 @@ const InputText: React.FC<InputTextProps> = (props) => {
   const [prevValue, setPrevValue] = useState(null);
   const [formattedValue, setFormattedValue] = useState('');
   const [caretPosition, setCaretPosition] = useState(null);
-  const [disallowBlurFlag, setDisallowBlurFlag] = useState(false);
 
   const inputNode = useRef(null);
-
+  const { input } = useTheme();
   const handleFocus = () => {
     setFocused(true);
     onFocus({ id, value, formattedValue });
   };
 
   const handleBlur = useCallback(() => {
-    if (disallowBlurFlag) return;
     setFocused(false);
     setCaretPosition(null);
     onBlur({ id, value, formattedValue });
-  }, [disallowBlurFlag, formattedValue, id, onBlur, value]);
+  }, [formattedValue, id, onBlur, value]);
 
   const handleChange = (e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLTextAreaElement>) => {
     const eValue = e.currentTarget.value;
@@ -67,28 +64,8 @@ const InputText: React.FC<InputTextProps> = (props) => {
     onChange({ id, value: dfValue, formattedValue: fValue });
   };
 
-  const handleClear = () => {
-    const fValue = format('', maxLength);
-    const dfValue = deformat(fValue);
-    setPrevValue(dfValue);
-    setFormattedValue(fValue);
-
-    onChange({ id, value: dfValue, formattedValue: fValue });
-  };
-
   const handleKeyDown = () => {
-    setCaretPosition(null)
-  };
-
-  const disallowBlur = () => {
-    setDisallowBlurFlag(true);
-  };
-
-  const allowBlur = () => {
-    if (disallowBlurFlag) {
-      setDisallowBlurFlag(false);
-      inputNode.current.focus();
-    }
+    setCaretPosition(null);
   };
 
   useEffect(() => {
@@ -119,6 +96,7 @@ const InputText: React.FC<InputTextProps> = (props) => {
     [clearable, value, focused, disabled],
   );
   const withIcon = useMemo(() => successIcon || clearableIcon, [successIcon, clearableIcon]);
+  console.log(input);
 
   return (
     <StyledInput sWidth={width}>
@@ -143,51 +121,21 @@ const InputText: React.FC<InputTextProps> = (props) => {
           sError={error}
           sWithLabel={!!label && smallLabel}
           sWithIcon={withIcon}
+          theme={input}
         />
       )}
-      {autosize && (
-        <StyledInputTextAutosize
-          ref={inputNode}
-          inputMode={inputMode}
-          id={id}
-          value={formattedValue}
-          maxLength={maxLength}
-          disabled={disabled}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
+
+      {label && (
+        <StyledInputLabel
           sSize={size}
-          sTextAlign={textAlign}
-          sAutoComplete={autoComplete}
+          sSmall={smallLabel}
+          sError={error}
           sDisabled={disabled}
           sFocused={focused}
-          sError={error}
-          sWithLabel={!!label && smallLabel}
-          sWithIcon={withIcon}
-        />
-      )}
-      {label && (
-        <StyledInputLabel sSize={size} sSmall={smallLabel} sError={error} sDisabled={disabled} sFocused={focused}>
+          theme={input}
+        >
           {label}
         </StyledInputLabel>
-      )}
-      {successIcon && (
-        <StyledInputIcon sSize={size}>
-          <IconStatusSuccess display="block" color="success" size={size} />
-        </StyledInputIcon>
-      )}
-      {clearableIcon && (
-        <StyledInputIcon
-          sSize={size}
-          sClickable
-          sDisabled={disabled}
-          onMouseDown={disallowBlur}
-          onMouseUp={allowBlur}
-          onClick={handleClear}
-        >
-          <IconActionClear display="block" size={size} />
-        </StyledInputIcon>
       )}
     </StyledInput>
   );

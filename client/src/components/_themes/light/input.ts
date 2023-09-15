@@ -2,7 +2,7 @@ import { mediaSizes } from 'components/_themes/constants';
 import { colors } from 'components/_themes/light/_colors';
 import { fonts } from 'components/_themes/light/_fonts';
 
-export default {
+export const styles = {
   label: {
     fontFamily: fonts.primary,
     position: {
@@ -51,10 +51,10 @@ export default {
       small: 400,
     },
     colors: {
-      //   disabled: colors.neutral60,
-      //   focused: colors.neutral40,
-      //   error: colors.neutral40,
-      //   normal: colors.neutral40,
+      disabled: colors.neutral60,
+      focused: colors.neutral40,
+      error: colors.neutral40,
+      normal: colors.neutral40,
     },
   },
 
@@ -110,22 +110,22 @@ export default {
       [mediaSizes.l]: { s: 14, m: 16, l: 18 },
     },
     colors: {
-      //   disabled: colors.neutral60,
-      //   focused: colors.onBackground,
-      //   error: colors.onBackground,
-      //   normal: colors.onBackground,
+      disabled: colors.neutral60,
+      focused: colors.onBackground,
+      error: colors.onBackground,
+      normal: colors.onBackground,
     },
     backgroundColors: {
-      //   disabled: colors.neutral90,
-      //   focused: colors.background,
-      //   error: colors.background,
-      //   normal: colors.background,
+      disabled: colors.neutral90,
+      focused: colors.background,
+      error: colors.background,
+      normal: colors.background,
     },
     borderColors: {
-      //   disabled: colors.neutral80,
-      //   focused: colors.primary,
-      //   error: colors.error,
-      //   normal: colors.neutral60,
+      disabled: colors.neutral80,
+      focused: colors.primary,
+      error: colors.error,
+      normal: colors.neutral60,
     },
   },
 

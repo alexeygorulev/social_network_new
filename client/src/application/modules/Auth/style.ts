@@ -23,7 +23,7 @@ export const StyledContainer = styled.div<{ colors: ColorsType }>`
     min-height: 500px;
   }
 
-  @media (${media.desktop}) {
+  @media (${media.largeDesktop}) {
     min-width: 800px;
     min-height: 600px;
   }
@@ -51,5 +51,6 @@ export const StyledImageAuthForm = styled.img`
 `;
 
 export const StyledAuthFormContainer = styled.div`
-  margin-top: 200px;
+  margin-top: 140px;
+  padding-right: 10px;
 `;
