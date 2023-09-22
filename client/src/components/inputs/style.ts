@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import { StyledInputElementProps, StyledInputLabelProps, StyledInputProps } from './types';
+import { StyledInputElementProps, StyledInputIconProps, StyledInputLabelProps, StyledInputProps } from './types';
 import { media, mediaSizes } from 'components/_themes/constants';
+import { iconProps } from './constants';
 
 function getInputWidth(props: StyledInputProps) {
   if (typeof props.sWidth === 'number') return `${props.sWidth}px`;
@@ -197,5 +198,27 @@ export const StyledInputElement = styled.div<StyledInputElementProps>`
     line-height: ${(props) => getInputElementLineHeight(props, mediaSizes.l)};
     font-size: ${(props) => getInputElementFontSize(props, mediaSizes.l)};
     padding: ${(props) => getInputElementPadding(props, mediaSizes.l)};
+  }
+`;
+
+export function getInputIconRight(props: StyledInputIconProps, mediaSize: string) {
+  return `${iconProps.right[mediaSize][props.sSize]}px`;
+}
+
+export const StyledInputIcon = styled.div<StyledInputIconProps>`
+  position: absolute;
+  box-sizing: border-box;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: ${(props) => (props.sClickable && !props.sDisabled ? 'pointer' : 'default')};
+  right: ${(props) => getInputIconRight(props, mediaSizes.s)};
+  pointer-events: ${(props) => (props.sClickable ? 'auto' : 'none')};
+
+  @media (${media.tablet}) {
+    right: ${(props) => getInputIconRight(props, mediaSizes.m)};
+  }
+
+  @media (${media.desktop}) {
+    right: ${(props) => getInputIconRight(props, mediaSizes.l)};
   }
 `;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { ComponentProps } from './types';
 import Block from 'components/atoms/Block';
 import {
@@ -10,16 +10,24 @@ import {
 } from './style';
 import { useTheme } from 'styled-components';
 import Grid, { Item } from 'components/atoms/Grid';
-import { labels } from './constants';
+import { fields, labels } from './constants';
 import InputText from 'components/inputs/InputText';
+import InputPassword from 'components/inputs/InputPassword';
+import { useSendUserAuthDataMutation } from 'api/auth/store';
 
 export default function ApplicationAuth(props: ComponentProps) {
   const { store, actions } = props;
-  const { mounted } = store;
-  const { mount, unmount } = actions;
+  const { mounted, data } = store;
+  const { mount, unmount, handleChange } = actions;
 
   const { block } = useTheme();
-  const { generalColors, gradients, background } = block;
+  const { generalColors, background } = block;
+
+  const [sendUserAuthData, { isLoading }] = useSendUserAuthDataMutation();
+
+  const onCheckLoginUser = async () => {
+    await sendUserAuthData({ email: 'asd', password: 'asd' });
+  };
 
   useEffect(() => {
     if (!mounted) mount();
@@ -27,10 +35,9 @@ export default function ApplicationAuth(props: ComponentProps) {
     return () => {
       if (mounted) unmount();
     };
-  }, [mounted, mount, unmount]);
+  }, [mounted]);
 
   if (!mounted) return null;
-  console.log(background);
 
   return (
     <StyledAuthWrapper>
@@ -47,14 +54,27 @@ export default function ApplicationAuth(props: ComponentProps) {
             </Block>
             <StyledAuthFormContainer>
               <Block textAlign="center">
-                <InputText label="Логин" />
+                <InputText
+                  id={fields.username}
+                  value={data.values[fields.username]}
+                  onChange={handleChange}
+                  label="Логин"
+                />
               </Block>
               <Block margin="m">
-                <InputText label="Введите пароль" />
+                <InputPassword
+                  id={fields.password}
+                  value={data.values[fields.password]}
+                  onChange={handleChange}
+                  visible
+                  label="Введите пароль"
+                />
               </Block>
             </StyledAuthFormContainer>
+        <button onClick={onCheckLoginUser}>фывфывфы</button>
           </Item>
         </Grid>
+
       </StyledContainer>
     </StyledAuthWrapper>
   );

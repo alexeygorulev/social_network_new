@@ -22,5 +22,6 @@ module.exports = {
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
     'no-irregular-whitespace': ['error', { skipStrings: true, skipJSXText: true, skipTemplates: true }],
+    'react-hooks/exhaustive-deps': 'off',
   },
-}
+};

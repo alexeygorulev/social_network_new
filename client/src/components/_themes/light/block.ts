@@ -11,6 +11,7 @@ export const styles = {
   textAlign: { ...textAligns },
   fontWeight: { ...fontWeights },
   fontStyle: { ...fontStyles },
+  display: { block: 'block', inline: 'inline-block' },
   size: {
     [mediaSizes.s]: { xs: 12, s: 14, m: 16, l: 18, xl: 20 },
     [mediaSizes.m]: { xs: 12, s: 14, m: 16, l: 18, xl: 20 },
