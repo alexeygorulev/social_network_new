@@ -1,10 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IAuthInitialState } from './types';
-import { fields } from './constants';
+import { authSteps } from './constants';
+import { fieldsSignIn } from './SignIn/constants';
+import { fieldsSignUp } from './SignUp/constants';
 
-const values = Object.values(fields).reduce((result, item) => ({ ...result, [item]: '' }), {});
+const valuesSignIn = Object.values(fieldsSignIn).reduce((result, item) => ({ ...result, [item]: '' }), {});
 
-const initialState: IAuthInitialState = { mounted: false, data: { values } };
+const valuesSignUp = Object.values(fieldsSignUp).reduce((result, item) => ({ ...result, [item]: '' }), {});
+
+const initialState: IAuthInitialState = {
+  mounted: false,
+  data: { valuesSignIn, valuesSignUp },
+  step: 'signIn',
+};
 
 export const authReducer = createSlice({
   name: 'authReducer',
@@ -16,13 +24,24 @@ export const authReducer = createSlice({
     unmount: (state) => {
       state.mounted = false;
     },
+
+    signInStep: (state) => {
+      state.step = authSteps.signIn;
+    },
+
+    signUpStep: (state) => {
+      state.step = authSteps.signUp;
+    },
+
     handleChange: (state, actions) => {
       const { id, value } = actions.payload;
       if (!id) return;
-      state.data.values[id] = value;
+
+      if (fieldsSignIn[id]) state.data.valuesSignIn[id] = value;
+      if (fieldsSignUp[id]) state.data.valuesSignUp[id] = value;
     },
   },
 });
 
-export const { mount, unmount, handleChange } = authReducer.actions;
+export const { mount, unmount, handleChange, signInStep, signUpStep } = authReducer.actions;
 export default authReducer.reducer;

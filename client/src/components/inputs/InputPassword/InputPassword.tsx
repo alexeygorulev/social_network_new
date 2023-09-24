@@ -20,6 +20,7 @@ const InputPassword: React.FC<InputPasswordProps> = (props) => {
     onFocus = () => null,
     onBlur = () => null,
     onChange = () => null,
+    handleLogin = () => null,
     value,
     label,
     width = '100%',
@@ -68,7 +69,10 @@ const InputPassword: React.FC<InputPasswordProps> = (props) => {
     onChange({ id, value: dfValue, formattedValue: fValue });
   };
 
-  const handleKeyDown = () => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleLogin();
+    }
     setCaretPosition(null);
   };
 

@@ -9,14 +9,15 @@ export const StyledAuthWrapper = styled.div`
   justify-content: center;
 `;
 
-export const StyledContainer = styled.div<{ colors: ColorsType }>`
-  min-width: 300px;
+export const StyledContainer = styled.div<{ colors: ColorsType; mobileScreen: boolean }>`
+  width: 300px;
   min-height: 400px;
   box-sizing: border-box;
   background: ${({ colors }) => colors.lightGray};
   box-shadow: ${({ colors }) => `1px 2px 12px 0px ${colors.shadowBlack}`};
   border-radius: 15px;
   overflow: hidden;
+  padding: ${({ mobileScreen }) => (mobileScreen ? '15px' : '')};
 
   @media (${media.largePhone}) {
     min-width: 600px;
@@ -32,25 +33,19 @@ export const StyledContainer = styled.div<{ colors: ColorsType }>`
 export const StyledImageContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 650px;
 `;
 export const StyledImageAuthForm = styled.img`
   object-fit: cover;
-  display: none;
 
   @media (${media.largePhone}) {
     display: block;
     width: 100%;
     height: 100%;
   }
-
-  @media (${media.desktop}) {
-    width: 100%;
-    height: 600px;
-  }
 `;
 
-export const StyledAuthFormContainer = styled.div`
-  margin-top: 140px;
+export const StyledAuthFormContainer = styled.div<{ registration?: boolean }>`
+  margin-top: ${({ registration }) => (registration ? '10px' : '140px')};
   padding-right: 10px;
 `;

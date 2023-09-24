@@ -20,7 +20,6 @@ const Layout: React.FC<LayoutProps> = (props) => {
   //     }),
   //     [navigation.home, navigation.auth],
   //   );
-  console.log(theme);
 
   return (
     <StyledLayout theme={theme} auth={true} data-component="Layout">

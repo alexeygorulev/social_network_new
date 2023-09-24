@@ -1,7 +1,8 @@
 import IStore from './store';
 
-type Data = Readonly<{
-  values: { [key: string]: string };
+export type Data = Readonly<{
+  valuesSignIn: { [key: string]: string };
+  valuesSignUp: { [key: string]: string };
 }>;
 
 export type ComponentProps = Readonly<{
@@ -13,7 +14,15 @@ export type ComponentProps = Readonly<{
   };
 }>;
 
+export type Visibility = Readonly<{
+  signIn: boolean;
+  signUp: boolean;
+}>;
+
+export type Step = 'signIn' | 'signUp';
+
 export type IAuthInitialState = Readonly<{
   mounted: boolean;
   data: Data;
+  step: Step;
 }>;

@@ -1,8 +1,4 @@
-export const labels = {
-  logIn: 'Войдите в аккаунт',
-};
-
-export const fields = {
-  username: 'username',
-  password: 'password',
+export const authSteps = {
+  signIn: 'signIn' as const,
+  signUp: 'signUp' as const,
 };

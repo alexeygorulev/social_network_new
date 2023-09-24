@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3444' }),
   endpoints: (builder) => ({
     sendUserAuthData: builder.mutation({
       query: (data) => ({
@@ -11,7 +11,14 @@ export const apiSlice = createApi({
         body: data,
       }),
     }),
+    subscribeUser: builder.mutation({
+      query: (data) => ({
+        url: '/auth/registration',
+        method: 'POST',
+        body: data,
+      }),
+    }),
   }),
 });
 
-export const { useSendUserAuthDataMutation } = apiSlice;
+export const { useSendUserAuthDataMutation, useSubscribeUserMutation } = apiSlice;

@@ -1,5 +1,4 @@
-import { TextAlign } from 'components/types';
-
+import { TextAlign } from 'components/_themes/light/types';
 import { InputProps } from 'components/inputs/types';
 
 export type InputPasswordProps = Readonly<{
@@ -14,6 +13,7 @@ export type InputPasswordProps = Readonly<{
   maxLength?: number;
   format?: (value?: string, maxLength?: number) => string;
   deformat?: (value?: string) => string;
+  handleLogin: () => void;
   autosize?: boolean;
   visible?: boolean;
 }> &
