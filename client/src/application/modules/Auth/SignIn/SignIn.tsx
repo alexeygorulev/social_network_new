@@ -5,10 +5,11 @@ import InputText from 'components/inputs/InputText';
 import InputPassword from 'components/inputs/InputPassword';
 import Button from 'components/atoms/Button';
 import { SignInProps } from './type';
-import { fieldsSignIn, labels } from './constants';
+import { buttons, fieldsSignIn, labels } from './constants';
 
 export const SignIn = (props: SignInProps) => {
   const { data, handleChange, isLoading, onCheckLoginUser, changeStep } = props;
+
   return (
     <>
       <Block margin="l" textAlign="center">
@@ -35,13 +36,19 @@ export const SignIn = (props: SignInProps) => {
         </Block>
       </StyledAuthFormContainer>
       <Block textAlign="center">
-        <Button loading={isLoading} width={200} onClick={onCheckLoginUser}>
+        <Button id={buttons.buttonLogin.id} loading={isLoading} width={200} onClick={onCheckLoginUser}>
           {labels.enterButton}
         </Button>
         <Block margin="m">
           <Span>{labels.forgetPassword}</Span>
           <Block>
-            <Span style={{ cursor: 'pointer' }} onClick={() => changeStep()} size="m" fontWeight="bold">
+            <Span
+              data-testid="reg"
+              style={{ cursor: 'pointer' }}
+              onClick={() => changeStep()}
+              size="m"
+              fontWeight="bold"
+            >
               {labels.sigUp}
             </Span>
           </Block>

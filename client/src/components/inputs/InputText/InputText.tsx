@@ -52,7 +52,6 @@ const InputText: React.FC<InputTextProps> = (props) => {
 
   const handleChange = (e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLTextAreaElement>) => {
     const eValue = e.currentTarget.value;
-
     const fValue = format(eValue, maxLength);
     const dfValue = deformat(fValue);
 
@@ -105,6 +104,7 @@ const InputText: React.FC<InputTextProps> = (props) => {
           as="input"
           inputMode={inputMode}
           id={id}
+          data-testid={id}
           value={formattedValue}
           maxLength={maxLength}
           disabled={disabled}

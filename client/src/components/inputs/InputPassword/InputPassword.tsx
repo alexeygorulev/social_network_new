@@ -121,6 +121,7 @@ const InputPassword: React.FC<InputPasswordProps> = (props) => {
         ref={inputNode}
         as="input"
         id={id}
+        data-testid={id}
         value={formattedValue}
         maxLength={maxLength}
         disabled={disabled}

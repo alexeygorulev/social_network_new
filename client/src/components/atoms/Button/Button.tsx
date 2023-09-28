@@ -42,6 +42,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     <StyledButton
       data-component="Button"
       id={id}
+      data-testid={id}
       disabled={disabled || loading}
       sType={type}
       sSize={size}

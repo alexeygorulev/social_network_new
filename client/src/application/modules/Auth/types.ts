@@ -7,12 +7,16 @@ export type Data = Readonly<{
 
 export type ComponentProps = Readonly<{
   store: ReturnType<typeof IStore>;
-  actions: {
+  actions?: {
     mount: () => void;
     unmount: () => void;
     handleChange: () => void;
   };
 }>;
+
+export interface WrapperProps {
+  children: React.ReactNode;
+}
 
 export type Visibility = Readonly<{
   signIn: boolean;

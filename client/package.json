@@ -46,7 +46,7 @@
     "build": "node -v && tsc && vite build --outDir build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview --port 8080 --outDir build --open",
-    "test": "node -v && vitest --run --coverage --passWithNoTests"
+    "test": "react-scripts test --clearCache && react-scripts test --watchAll=false  --coverage"
   },
   "eslintConfig": {
     "extends": [

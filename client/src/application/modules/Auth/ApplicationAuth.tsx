@@ -1,55 +1,36 @@
-import { useEffect } from 'react';
-import { ComponentProps } from './types';
+import { useEffect, useMemo } from 'react';
 import { StyledAuthWrapper, StyledContainer, StyledImageAuthForm, StyledImageContainer } from './style';
 import { useTheme } from 'styled-components';
 import Grid, { Item } from 'components/atoms/Grid';
 import { authSteps } from './constants';
-import { useSendUserAuthDataMutation, useSubscribeUserMutation } from 'api/auth/store';
+import { mount, unmount, handleChange, signInStep, signUpStep } from './store';
 import { isMobile } from 'utils/isMobile';
 import SignIn from './SignIn';
-import { fieldsSignIn } from './SignIn/constants';
 import SignUp from './SignUp';
-import { fieldsSignUp } from './SignUp/constants';
+import { useSelector } from 'react-redux';
+import { useActions } from 'application/hooks/useActions';
+import { RootState } from 'main';
+import { useAuthLogic } from '../../hooks/useAuthLogic';
 
-export default function ApplicationAuth(props: ComponentProps) {
-  const { store, actions } = props;
-  const { mounted, data, step } = store;
-  const { mount, unmount, handleChange, signInStep, signUpStep } = actions;
+export default function ApplicationAuth() {
+  const { mounted, data, step } = useSelector((state: RootState) => state?.authReducer) || {};
+  const actions = useActions({ mount, unmount, handleChange, signInStep, signUpStep });
 
   const { block } = useTheme();
-  const { generalColors, background } = block;
+  const { generalColors, background } = block ?? {};
 
-  const [sendUserAuthData, { isLoading: isLoadingAuth }] = useSendUserAuthDataMutation();
-
-  const [subscribeUser, { isLoading: isLoadingReg }] = useSubscribeUserMutation();
-
-  const onCheckLoginUser = async () => {
-    await sendUserAuthData({
-      login: data.valuesSignIn[fieldsSignIn.username],
-      password: data.valuesSignIn[fieldsSignIn.password],
-    });
-  };
-
-  const onSubscribeUser = async () => {
-    const userData = Object.keys(fieldsSignUp).reduce(
-      (prev, item) => ({ ...prev, [item]: data.valuesSignUp[item] }),
-      {},
-    );
-    console.log(userData);
-
-    await subscribeUser(userData);
-  };
+  const { onCheckLoginUser, isLoadingAuth, onSubscribeUser } = useAuthLogic(data);
 
   const mobileScreen = isMobile.screenSize();
-  const visible = {
-    signIn: step === authSteps.signIn,
-    signUp: step === authSteps.signUp,
-  };
+
+  const shouldRenderSignIn = useMemo(() => step === authSteps.signIn, [step]);
+  const shouldRenderSignUp = useMemo(() => step === authSteps.signUp, [step]);
+
   useEffect(() => {
-    if (!mounted) mount();
+    if (!mounted) actions.mount();
 
     return () => {
-      if (mounted) unmount();
+      if (mounted) actions.unmount();
     };
   }, [mounted]);
 
@@ -67,16 +48,18 @@ export default function ApplicationAuth(props: ComponentProps) {
             </Item>
           )}
           <Item size={mobileScreen ? 12 : 6}>
-            {visible.signIn && (
+            {shouldRenderSignIn && (
               <SignIn
                 data={data}
-                changeStep={signUpStep}
-                handleChange={handleChange}
+                changeStep={actions.signUpStep}
+                handleChange={actions.handleChange}
                 onCheckLoginUser={onCheckLoginUser}
                 isLoading={isLoadingAuth}
               />
             )}
-            {visible.signUp && <SignUp handleSubscribe={onSubscribeUser} data={data} handleChange={handleChange} />}
+            {shouldRenderSignUp && (
+              <SignUp handleSubscribe={onSubscribeUser} data={data} handleChange={actions.handleChange} />
+            )}
           </Item>
         </Grid>
       </StyledContainer>

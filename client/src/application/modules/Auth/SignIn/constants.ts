@@ -11,3 +11,9 @@ export const fieldsSignIn = {
   username: 'username',
   password: 'password',
 };
+
+export const buttons = {
+  buttonLogin: {
+    id: 'buttonLogin',
+  },
+};
