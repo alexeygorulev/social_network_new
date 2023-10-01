@@ -20,5 +20,7 @@ export const apiSlice = createApi({
     }),
   }),
 });
-
+if (!apiSlice) {
+  throw new Error('apiSlice is undefined');
+}
 export const { useSendUserAuthDataMutation, useSubscribeUserMutation } = apiSlice;

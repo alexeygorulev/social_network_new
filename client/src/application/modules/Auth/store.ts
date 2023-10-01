@@ -11,7 +11,7 @@ const valuesSignUp = Object.values(fieldsSignUp).reduce((result, item) => ({ ...
 const initialState: IAuthInitialState = {
   mounted: false,
   data: { valuesSignIn, valuesSignUp },
-  step: 'signIn',
+  step: authSteps.signIn,
 };
 
 export const authReducer = createSlice({

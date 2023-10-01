@@ -1,8 +1,8 @@
 import IStore from './store';
 
 export type Data = Readonly<{
-  valuesSignIn: { [key: string]: string };
-  valuesSignUp: { [key: string]: string };
+  valuesSignIn?: { [key: string]: string };
+  valuesSignUp?: { [key: string]: string };
 }>;
 
 export type ComponentProps = Readonly<{

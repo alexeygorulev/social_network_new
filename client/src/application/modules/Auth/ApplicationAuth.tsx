@@ -19,7 +19,7 @@ export default function ApplicationAuth() {
   const { block } = useTheme();
   const { generalColors, background } = block ?? {};
 
-  const { onCheckLoginUser, isLoadingAuth, onSubscribeUser } = useAuthLogic(data);
+  const { token, onCheckLoginUser, isLoadingAuth, onSubscribeUser } = useAuthLogic(data);
 
   const mobileScreen = isMobile.screenSize();
 
