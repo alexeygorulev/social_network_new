@@ -58,7 +58,12 @@ export default function ApplicationAuth() {
               />
             )}
             {shouldRenderSignUp && (
-              <SignUp handleSubscribe={onSubscribeUser} data={data} handleChange={actions.handleChange} />
+              <SignUp
+                handleSubscribe={onSubscribeUser}
+                changeStep={actions.signInStep}
+                data={data}
+                handleChange={actions.handleChange}
+              />
             )}
           </Item>
         </Grid>

@@ -33,7 +33,7 @@ export const StyledContainer = styled.div<{ colors: ColorsType; mobileScreen: bo
 export const StyledImageContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 650px;
+  height: 670px;
 `;
 export const StyledImageAuthForm = styled.img`
   object-fit: cover;

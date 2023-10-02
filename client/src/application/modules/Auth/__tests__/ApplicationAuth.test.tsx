@@ -38,6 +38,7 @@ describe('ApplicationAuth.tsx', () => {
         { isLoading: false, reset: jest.fn() },
       ]);
   });
+
   it('renders without crashing', () => {
     const store = createReduxStore();
     const { asFragment } = renderWithTheme(<ApplicationAuth />, store);
@@ -67,6 +68,7 @@ describe('ApplicationAuth.tsx', () => {
     expect(authReducer.data.valuesSignIn.password).toBe('asd');
     expect(authReducer.data.valuesSignIn.username).toBe('');
   });
+
   it('useAuthLogic', async () => {
     const store = createReduxStore();
     const wrapper = ({ children }: { children: React.ReactNode }) => <Provider store={store}>{children}</Provider>;

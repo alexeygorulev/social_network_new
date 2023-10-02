@@ -4,9 +4,11 @@ import { InputItem, SignUpProps } from './type';
 import { fieldsSignUp, labels, titles } from './constants';
 import { StyledAuthFormContainer } from '../style';
 import Button from 'components/atoms/Button';
+import IconArrowLeft from 'components/icons/IconArrowLeft';
+import { StyledBackToAuthIcon } from './styles';
 
 const SignUp = (props: SignUpProps) => {
-  const { handleChange, data, handleSubscribe } = props;
+  const { handleChange, data, handleSubscribe, changeStep } = props;
   const inputArray = Object.keys(fieldsSignUp).reduce(
     (result, item) => [...result, { id: item, label: labels[item], value: data.valuesSignUp[item] }],
     [],
@@ -14,6 +16,9 @@ const SignUp = (props: SignUpProps) => {
 
   return (
     <StyledAuthFormContainer registration>
+      <StyledBackToAuthIcon data-testid="auth" onClick={() => changeStep()}>
+        <IconArrowLeft />
+      </StyledBackToAuthIcon>
       <Block textAlign="center">{titles.main}</Block>
       {inputArray.map((input: InputItem) => (
         <Block key={input.id} margin="s">
@@ -21,7 +26,9 @@ const SignUp = (props: SignUpProps) => {
         </Block>
       ))}
       <Block margin="l" textAlign="center">
-        <Button onClick={handleSubscribe}>{titles.button}</Button>
+        <Button id="submit" onClick={handleSubscribe}>
+          {titles.button}
+        </Button>
       </Block>
     </StyledAuthFormContainer>
   );
