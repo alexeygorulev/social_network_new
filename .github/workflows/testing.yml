@@ -7,7 +7,7 @@ jobs:
       - name: Get the repository code
       uses: actions/checkout@v4
       with:
-          path: client
+        path: client
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
