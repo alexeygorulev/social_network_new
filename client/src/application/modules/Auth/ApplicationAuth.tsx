@@ -34,7 +34,7 @@ export default function ApplicationAuth() {
     };
   }, [mounted]);
 
-  if (!mounted) return null;
+  if (!mounted || !!token) return null;
 
   return (
     <StyledAuthWrapper>
