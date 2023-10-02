@@ -1,0 +1,63 @@
+name: Deploy React App
+on:
+  push:
+    branches:
+      - testActions
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        working-directory: ./client
+        run: yarn install
+
+      - name: Test Application
+        working-directory: ./client
+        run: yarn test
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        working-directory: ./client
+        run: yarn install
+
+      - name: Lint Application
+        working-directory: ./client
+        run: yarn lint
+  bild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        working-directory: ./client
+        run: yarn install
+
+      - name: Lint Application
+        working-directory: ./client
+        run: yarn build
+
+      - name: Deploy
+        run: echo Deploying...
