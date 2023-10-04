@@ -13,6 +13,7 @@
     "@types/react-dom": "^18.2.7",
     "@types/react-redux": "^7.1.25",
     "@types/react-router-dom": "^5.3.3",
+    "cross-env": "^7.0.3",
     "polished": "^4.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -45,7 +46,7 @@
   "scripts": {
     "dev": "vite --port 3000 --open",
     "prod": "vite --port 3000 --open",
-    "build": "node -v && tsc && vite build --outDir build",
+    "build": "cross-env NODE_ENV=production -v && tsc && vite build --outDir build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview --port 8080 --outDir build --open",
     "test": "react-scripts test --clearCache && react-scripts test --watchAll=false"
