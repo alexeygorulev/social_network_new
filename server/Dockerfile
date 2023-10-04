@@ -18,5 +18,4 @@ RUN yarn build
 
 EXPOSE 3444
 
-
-CMD ["./start.sh"]
+CMD ["yarn", "start:prod"]
