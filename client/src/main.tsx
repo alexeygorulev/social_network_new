@@ -7,14 +7,10 @@ import { createReduxStore } from 'utils/createReduxStore';
 const store = createReduxStore();
 export type RootState = ReturnType<typeof store.getState>;
 
-const root = document.getElementById('root')!;
-const app = (
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
       <Application />
     </Provider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
-
-const reactRoot = ReactDOM.createRoot(root);
-reactRoot.render(app);
