@@ -1,4 +1,4 @@
-import 'regenerator-runtime/runtime'; /* eslint-disable-line */
+import 'regenerator-runtime/runtime';
 import '@testing-library/jest-dom';
 
 global.window.matchMedia =
