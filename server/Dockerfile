@@ -16,6 +16,8 @@ COPY . .
 # Собираем NestJS проект
 RUN yarn build
 
+RUN npx prisma generate
+
 EXPOSE 3444
 
 CMD ["yarn", "start:prod"]
