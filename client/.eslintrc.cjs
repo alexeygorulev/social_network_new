@@ -9,7 +9,7 @@ module.exports = {
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh', 'prettier'],
+  plugins: ['@typescript-eslint', 'react-refresh', 'prettier'],
   rules: {
     'prettier/prettier': 'error',
     'no-console': 1,
