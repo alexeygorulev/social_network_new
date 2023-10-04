@@ -44,9 +44,9 @@
     "vitest-sonar-reporter": "0.4.1"
   },
   "scripts": {
-    "dev": "vite --port 3000 --open",
+    "dev": "cross-env NODE_ENV=development vite --port 3000 --open",
     "prod": "vite --port 3000 --open",
-    "build": "cross-env NODE_ENV=production -v && tsc && vite build --outDir build",
+    "build": "-v && tsc && vite build --outDir build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview --port 8080 --outDir build --open",
     "test": "react-scripts test --clearCache && react-scripts test --watchAll=false"
