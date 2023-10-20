@@ -1,9 +1,7 @@
-# Основан на официальном образе Node.js
 FROM node:18 AS build-stage
 
 WORKDIR /usr/src/app
 
-# Копируем файлы для зависимостей
 COPY yarn.lock ./
 
 COPY package*.json ./
@@ -12,7 +10,6 @@ RUN yarn
 
 COPY . .
 
-# Собираем React проект
 RUN yarn build
 
 # Используем Nginx для раздачи статических файлов

@@ -30,3 +30,5 @@ export type IAuthInitialState = Readonly<{
   data: Data;
   step: Step;
 }>;
+
+export type Values = { [key: string]: string };

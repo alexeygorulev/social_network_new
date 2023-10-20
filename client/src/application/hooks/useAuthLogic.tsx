@@ -1,8 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useSendUserAuthDataMutation, useSubscribeUserMutation } from 'api/auth/store';
 import { Data } from '../modules/Auth/types';
-import { fieldsSignIn } from '../modules/Auth/SignIn/constants';
-import { fieldsSignUp } from '../modules/Auth/SignUp/constants';
+import { fieldsSignIn, fieldsSignUp } from 'application/modules/Auth/constants';
 
 export const useAuthLogic = (data: Data) => {
   const [sendUserAuthData, { isLoading: isLoadingAuth }] = useSendUserAuthDataMutation();

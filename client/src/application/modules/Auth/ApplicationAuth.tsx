@@ -2,7 +2,7 @@ import { useEffect, useMemo } from 'react';
 import { StyledAuthWrapper, StyledContainer, StyledImageAuthForm, StyledImageContainer } from './style';
 import { useTheme } from 'styled-components';
 import Grid, { Item } from 'components/atoms/Grid';
-import { authSteps } from './constants';
+import { authSteps, fieldsSignIn } from './constants';
 import { mount, unmount, handleChange, signInStep, signUpStep } from './store';
 import { isMobile } from 'utils/isMobile';
 import SignIn from './SignIn';
@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import { useActions } from 'application/hooks/useActions';
 import { RootState } from 'main';
 import { useAuthLogic } from '../../hooks/useAuthLogic';
+import { useError } from 'application/hooks/useError';
 
 export default function ApplicationAuth() {
   const { mounted, data, step } = useSelector((state: RootState) => state?.authReducer) || {};
@@ -20,6 +21,8 @@ export default function ApplicationAuth() {
   const { generalColors, background } = block ?? {};
 
   const { onCheckLoginUser, isLoadingAuth, onSubscribeUser } = useAuthLogic(data);
+  const { errors } = useError(data.valuesSignIn, fieldsSignIn);
+  console.log(errors);
 
   const mobileScreen = isMobile.screenSize();
 

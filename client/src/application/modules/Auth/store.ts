@@ -1,8 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IAuthInitialState } from './types';
-import { authSteps } from './constants';
-import { fieldsSignIn } from './SignIn/constants';
-import { fieldsSignUp } from './SignUp/constants';
+import { authSteps, fieldsSignIn, fieldsSignUp } from './constants';
 
 const valuesSignIn = Object.values(fieldsSignIn).reduce((result, item) => ({ ...result, [item]: '' }), {});
 

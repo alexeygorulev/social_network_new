@@ -5,7 +5,8 @@ import InputText from 'components/inputs/InputText';
 import InputPassword from 'components/inputs/InputPassword';
 import Button from 'components/atoms/Button';
 import { SignInProps } from './type';
-import { buttons, fieldsSignIn, labels } from './constants';
+import { buttons, labels } from './constants';
+import { fieldsSignIn } from '../constants';
 
 export const SignIn = (props: SignInProps) => {
   const { data, handleChange, isLoading, onCheckLoginUser, changeStep } = props;

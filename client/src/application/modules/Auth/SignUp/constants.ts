@@ -1,12 +1,4 @@
-export const fieldsSignUp = {
-  firstName: 'firstName',
-  middleName: 'middleName',
-  lastName: 'lastName',
-  login: 'login',
-  email: 'email',
-  password: 'password',
-  duplicatePassword: 'duplicatePassword',
-};
+import { fieldsSignUp } from '../constants';
 
 export const labels = {
   [fieldsSignUp.firstName]: 'Имя',

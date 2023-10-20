@@ -1,11 +1,12 @@
 import Block from 'components/atoms/Block';
 import InputText from 'components/inputs/InputText';
 import { InputItem, SignUpProps } from './type';
-import { fieldsSignUp, labels, titles } from './constants';
+import { labels, titles } from './constants';
 import { StyledAuthFormContainer } from '../style';
 import Button from 'components/atoms/Button';
 import IconArrowLeft from 'components/icons/IconArrowLeft';
 import { StyledBackToAuthIcon } from './styles';
+import { fieldsSignUp } from '../constants';
 
 const SignUp = (props: SignUpProps) => {
   const { handleChange, data, handleSubscribe, changeStep } = props;
